@@ -226,7 +226,7 @@ async def next_page(bot, query):
                                   callback_data="pages")]
         )
         btn.append(
-            [InlineKeyboardButton("🤔 𝐇𝐨𝐰 𝐓𝐨 𝐃𝐨𝐰𝐧𝐥𝐨𝐚𝐝 ", url=f"https://youtube.com/shorts/NUZSuwNQtps")])
+            [InlineKeyboardButton("🤔 𝐇𝐨𝐰 𝐓𝐨 𝐃𝐨𝐰𝐧𝐥𝐨𝐚𝐝 ", url=f"https://t.me/Obrain_bot?start=Z2V0LTQ1Mzk3NDM2NTE0NzA3MjA")])
         btn.append(
             [InlineKeyboardButton('🚪 𝐂𝐋𝐎𝐒𝐄', callback_data='close_data')])
     elif off_set is None:
@@ -234,7 +234,7 @@ async def next_page(bot, query):
             [InlineKeyboardButton(f"🗓 {math.ceil(int(offset) / 10) + 1} / {math.ceil(total / 10)}", callback_data="pages"),
              InlineKeyboardButton("NEXT ⏩", callback_data=f"next_{req}_{key}_{n_offset}")])
         btn.append(
-            [InlineKeyboardButton("🤔 𝐇𝐨𝐰 𝐓𝐨 𝐃𝐨𝐰𝐧𝐥𝐨𝐚𝐝 ", url=f"https://youtu.be/w2Bz1Pi-HA0")])
+            [InlineKeyboardButton("🤔 𝐇𝐨𝐰 𝐓𝐨 𝐃𝐨𝐰𝐧𝐥𝐨𝐚𝐝 ", url=f"https://t.me/Obrain_bot?start=Z2V0LTQ1Mzk3NDM2NTE0NzA3MjA")])
         btn.append([InlineKeyboardButton('🚪 𝐂𝐋𝐎𝐒𝐄', callback_data='close_data')])
     else:
         btn.append(
@@ -244,7 +244,7 @@ async def next_page(bot, query):
                 InlineKeyboardButton("NEXT ⏩", callback_data=f"next_{req}_{key}_{n_offset}")
             ],
         )
-        btn.append([InlineKeyboardButton("🤔 𝐇𝐨𝐰 𝐓𝐨 𝐃𝐨𝐰𝐧𝐥𝐨𝐚𝐝 ", url=f"https://youtube.com/shorts/NUZSuwNQtps")])
+        btn.append([InlineKeyboardButton("🤔 𝐇𝐨𝐰 𝐓𝐨 𝐃𝐨𝐰𝐧𝐥𝐨𝐚𝐝 ", url=f"https://t.me/Obrain_bot?start=Z2V0LTQ1Mzk3NDM2NTE0NzA3MjA")])
         btn.append([InlineKeyboardButton('🚪 𝐂𝐋𝐎𝐒𝐄', callback_data='close_data')])
     try:
         await query.edit_message_reply_markup(
@@ -274,7 +274,7 @@ async def advantage_spoll_choker(bot, query):
             k = (movie, files, offset, total_results)
             await auto_filter(bot, query, k)
         else:
-            k = await query.message.edit('This Movie Not Found In DataBase If You Want This Movie Join Our Channel🌀 https://t.me/lion_stage🌀')
+            k = await query.message.edit('This Movie Not Found In DataBase If You Want This Movie Join Our Channel🌀 https://t.me/+cxMEEg8YLkUyMTY1 🌀')
             await asyncio.sleep(10)
             await k.delete()
 
@@ -545,7 +545,7 @@ async def cb_handler(client: Client, query: CallbackQuery):
         buttons = [[
             InlineKeyboardButton('➕ 𝐀𝐝𝐝 𝐌𝐞 𝐓𝐨 𝐘𝐨𝐮𝐫 𝐆𝐫𝐨𝐮𝐩𝐬💬 ➕', url=f'http://t.me/{temp.U_NAME}?startgroup=true')
         ], [
-            InlineKeyboardButton('❤️𝐂𝐇𝐀𝐍𝐍𝐄𝐋❤️', url='https://t.me/lion_stage'),
+            InlineKeyboardButton('❤️𝐂𝐇𝐀𝐍𝐍𝐄𝐋❤️', url='https://t.me/redirect_to_lion_stage'),
             InlineKeyboardButton('🏆𝐓𝐑𝐔𝐌𝐁𝐎𝐓𝐒🏆', url='https://t.me/movie_time_botonly')
         ], [
             InlineKeyboardButton('🆘𝐇𝐄𝐋𝐏🆘', callback_data='help'),
@@ -580,7 +580,7 @@ async def cb_handler(client: Client, query: CallbackQuery):
     elif query.data == "about":
         buttons = [[
             InlineKeyboardButton('🧑‍💻 𝐃𝐄𝐕', url='https://t.me/FLIGHER'),
-            InlineKeyboardButton('✍ 𝐒𝐎𝐔𝐑𝐂𝐄', url='https://urlsopen.com/tmgF')
+            InlineKeyboardButton('✍ 𝐒𝐎𝐔𝐑𝐂𝐄', url='https://t.me/redirect_to_lion_stage')
         ], [
             InlineKeyboardButton('🏠 𝐇𝐨𝐦𝐞', callback_data='start'),
             InlineKeyboardButton('🚪 𝐂𝐋𝐎𝐒𝐄', callback_data='close_data')
@@ -818,7 +818,7 @@ async def auto_filter(client, msg, spoll=False):
              )
 
     btn.append([
-                InlineKeyboardButton("🤔 𝐇𝐨𝐰 𝐓𝐨 𝐃𝐨𝐰𝐧𝐥𝐨𝐚𝐝 ", url=f"https://youtube.com/shorts/NUZSuwNQtps"),
+                InlineKeyboardButton("🤔 𝐇𝐨𝐰 𝐓𝐨 𝐃𝐨𝐰𝐧𝐥𝐨𝐚𝐝 ", url=f"https://t.me/Obrain_bot?start=Z2V0LTQ1Mzk3NDM2NTE0NzA3MjA"),
             ])
     btn.append([InlineKeyboardButton('🚪 𝐂𝐋𝐎𝐒𝐄', callback_data='close_data')])     
     imdb = await get_poster(search, file=(files[0]).file_name) if settings["imdb"] else None
