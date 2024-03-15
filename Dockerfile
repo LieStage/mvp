@@ -14,4 +14,4 @@ COPY . .
 COPY start.sh /start.sh
 CMD ["/bin/bash", "/start.sh"]
 #EXPOSE 80
-EXPOSE 80/tcp
+EXPOSE 80
