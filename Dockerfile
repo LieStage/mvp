@@ -1,17 +1,9 @@
-FROM python:3.9-slim-buster
+FROM python:3.9
 
-
-RUN apt update && apt upgrade -y
-RUN apt install git -y
-COPY requirements.txt /requirements.txt
-
-RUN cd /
-RUN pip install -U pip && pip install -U -r requirements.txt
 WORKDIR /app
 
-COPY . .
+COPY requirements.txt /app/
+RUN pip3 install -r requirements.txt
+COPY . /app
 
-COPY start.sh /start.sh
-CMD ["/bin/bash", "/start.sh"]
-#EXPOSE 80
-EXPOSE 80
+CMD  python3 bot.py
