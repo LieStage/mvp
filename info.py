@@ -15,7 +15,7 @@ PORT = environ.get("PORT", "8080")
 SESSION = environ.get('SESSION', 'Media_search')
 API_ID = environ.get('API_ID',"4682685")
 API_HASH = environ.get('API_HASH',"3eba5d471162181b8a3f7f5c0a23c307")
-BOT_TOKEN = environ.get('BOT_TOKEN',"6080383504:AAH0-A3MaoZLHzWpI_yLc7kLsBZ9hmMv_wI")
+BOT_TOKEN = environ.get('BOT_TOKEN',"6080383504:AAH4B92ZS-FZRGC9xspDp03mxju1D7pCzVE")
 
 # Bot settings
 CACHE_TIME = int(environ.get('CACHE_TIME', 300))
@@ -70,5 +70,5 @@ LOG_STR += ("Spell Check Mode Is Enabled, bot will be suggesting related movies 
 LOG_STR += (f"MAX_LIST_ELM Found, long list will be shortened to first {MAX_LIST_ELM} elements\n" if MAX_LIST_ELM else "Full List of casts and crew will be shown in imdb template, restrict them by adding a value to MAX_LIST_ELM\n")
 LOG_STR += f"Your current IMDB template is {IMDB_TEMPLATE}"
 
-SHORTENER_API = environ.get("SHORTENER_API", "9d7e32c571c44b3ee91a814fa25c31e0211f5aeb")
-LONG_DROPLINK_URL = environ.get("LONG_DROPLINK_URL","https://paisakamalo.in/api")
+SHORTENER_API = environ.get("SHORTENER_API", "a7c8ec9f5071ca0bfd20f287cf6ab31e5232947e")
+LONG_DROPLINK_URL = environ.get("LONG_DROPLINK_URL","https://urllinkshort.in/api")
