@@ -20,3 +20,5 @@ RUN mkdir /app/data
 
 # Start the application with Gunicorn and your bot script
 CMD gunicorn app:app & python3 bot.py
+
+EXPOSE 80
