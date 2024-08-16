@@ -376,7 +376,7 @@ def humanbytes(size):
         n += 1
     return str(round(size, 2)) + " " + Dic_powerN[n] + 'B'
 
-shortz = shortzy.Shortzy(SHORTENER_API, "urllinkshort.in")
+shortz = shortzy.Shortzy(SHORTENER_API, "modijiurl.com")
 async def get_shortlink(link):
     if SHORTENER_API:
         if LONG_DROPLINK_URL == "True" or LONG_DROPLINK_URL is True:
