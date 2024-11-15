@@ -19,6 +19,7 @@ COPY . /app
 RUN mkdir /app/data 
 
 # Start the application with Gunicorn and your bot script
+EXPOSE 8080
 CMD gunicorn app:app & python3 bot.py
 
-EXPOSE 80
+
