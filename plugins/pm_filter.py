@@ -167,7 +167,7 @@ async def give_filter(client,message):
 
 @Client.on_message(filters.command('shortset') & filters.user(ADMINS))
 async def short_se_t(client, message):
-    group_id = message.chat.id
+    group_id = message.from_user.id
     command_args = message.command[1:]  # Get the arguments after the command
 
     if len(command_args) == 0:
