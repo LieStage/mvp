@@ -29,6 +29,7 @@ logger.setLevel(logging.ERROR)
 BUTTONS = {}
 SPELL_CHECK = {}
 FILTER_MODE = {}
+GET_SHORTLINK_MODE={}
 
 @Client.on_message(filters.command('autofilter'))
 
@@ -164,7 +165,33 @@ async def give_filter(client,message):
 
 
 
+@Client.on_message(filters.command('ssettings') & filters.user(ADMINS))
+async def ssettings(client, message):
+    group_id = message.chat.id
+    command_args = message.command[1:]  # Get the arguments after the command
 
+    if len(command_args) == 0:
+        await message.reply("Please specify 'on' or 'off' to toggle the shortlink feature.")
+        return
+
+    arg = command_args[0].lower()  # Get the first argument and convert it to lower case
+
+    if arg == "on":
+        GET_SHORTLINK_MODE[str(group_id)] = True
+        x=await message.reply("**Shortlink feature is now enabled.**")
+        await asyncio.sleep(5)
+        await x.delete()
+
+
+    elif arg == "off":
+        GET_SHORTLINK_MODE[str(group_id)] = False
+        y=await message.reply("**Shortlink feature is now disabled.**")
+        await asyncio.sleep(5)
+        await y.delete()
+    else:
+        z=await message.reply("Invalid argument. Please use 'on' or 'off'.")
+        await asyncio.sleep(5)
+        await z.delete()
 
 
 @Client.on_callback_query(filters.regex(r"^next"))
@@ -192,14 +219,17 @@ async def next_page(bot, query):
         return
     settings = await get_settings(query.message.chat.id)
     if settings['button']:
-        btn = [
-            [
-                InlineKeyboardButton(
-                    text=f"[{get_size(file.file_size)}] {file.file_name}", url=f"https://telegram.me/{temp.U_NAME}?start=files_{file.file_id}"
-                ),
-            ]
-            for file in files
+    btn = [
+        [
+            InlineKeyboardButton(
+                text=f"[{get_size(file.file_size)}] {file.file_name}",
+                url=(await get_shortlink(f"https://telegram.me/{temp.U_NAME}?start=files_{file.file_id}") 
+                     if GET_SHORTLINK_MODE.get(str(message.chat.id), True)  # Check if shortlink is enabled
+                     else f"https://telegram.me/{temp.U_NAME}?start=files_{file.file_id}")
+            ),
         ]
+        for file in files
+    ]
     else:
         btn = [
             [
@@ -780,15 +810,17 @@ async def auto_filter(client, msg, spoll=False):
         message = msg.message.reply_to_message  # msg will be callback query
         search, files, offset, total_results = spoll
     pre = 'filep' if settings['file_secure'] else 'file'
-    if settings["button"]:
+    if settings['button']:
         btn = [
             [
                 InlineKeyboardButton(
-                    text=f"[{get_size(file.file_size)}] {file.file_name}", url=f"https://telegram.me/{temp.U_NAME}?start=pre_{file.file_id}"
+                    text=f"[{get_size(file.file_size)}] {file.file_name}",
+                    url=(await get_shortlink(f"https://telegram.me/{temp.U_NAME}?start=files_{file.file_id}") 
+                         if GET_SHORTLINK_MODE.get(str(message.chat.id), True)  # Check if shortlink is enabled
+                         else f"https://telegram.me/{temp.U_NAME}?start=files_{file.file_id}")
                 ),
             ]
             for file in files
-        ]
     else:
         btn = [
             [
