@@ -219,17 +219,17 @@ async def next_page(bot, query):
         return
     settings = await get_settings(query.message.chat.id)
     if settings['button']:
-    btn = [
-        [
-            InlineKeyboardButton(
-                text=f"[{get_size(file.file_size)}] {file.file_name}",
-                url=(await get_shortlink(f"https://telegram.me/{temp.U_NAME}?start=files_{file.file_id}") 
-                     if GET_SHORTLINK_MODE.get(str(message.chat.id), True)  # Check if shortlink is enabled
-                     else f"https://telegram.me/{temp.U_NAME}?start=files_{file.file_id}")
-            ),
+        btn = [
+            [
+                InlineKeyboardButton(
+                    text=f"[{get_size(file.file_size)}] {file.file_name}",
+                    url=(await get_shortlink(f"https://telegram.me/{temp.U_NAME}?start=files_{file.file_id}") 
+                         if GET_SHORTLINK_MODE.get(str(message.chat.id), True)  # Check if shortlink is enabled
+                         else f"https://telegram.me/{temp.U_NAME}?start=files_{file.file_id}")
+                ),
+            ]
+            for file in files
         ]
-        for file in files
-    ]
     else:
         btn = [
             [
