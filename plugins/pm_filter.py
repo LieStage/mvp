@@ -165,8 +165,8 @@ async def give_filter(client,message):
 
 
 
-@Client.on_message(filters.command('ssettings') & filters.user(ADMINS))
-async def ssettings(client, message):
+@Client.on_message(filters.command('shortset') & filters.user(ADMINS))
+async def short_se_t(client, message):
     group_id = message.chat.id
     command_args = message.command[1:]  # Get the arguments after the command
 
