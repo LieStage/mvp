@@ -32,27 +32,46 @@ FILTER_MODE = {}
 
 
 
-@Client.on_message(filters.command("set_download_url"))
+# @Client.on_message(filters.command("set_download_url"))
+# async def set_download_url(client, message):
+#     # Check if the user has the permission to set the URL (optional)
+#     if not message.from_user.id == YOUR_ADMIN_ID:  # Replace with your admin ID check
+#         return await message.reply("You do not have permission to set the download URL.")
+
+#     # Get the new URL from the message
+#     new_url = message.text.split(maxsplit=1)
+#     if len(new_url) < 2:
+#         return await message.reply("Please provide a URL after the command. Example: /set_download_url <url>")
+
+#     new_url = new_url[1]  # The URL is the second part of the message
+
+#     # Save the new URL in the settings (you may want to save it to a database or a file)
+#     settings = await get_settings(message.chat.id)
+#     settings['download_url'] = new_url  # Update the settings with the new URL
+
+#     # Save the settings back (implement this function according to your storage method)
+#     await save_group_settings(message.chat.id, settings)
+
+#     await message.reply(f"The download URL has been set to: {new_url}")
+
+@Client.on_message(filters.command("seturl"))
 async def set_download_url(client, message):
     # Check if the user has the permission to set the URL (optional)
-    if not message.from_user.id == YOUR_ADMIN_ID:  # Replace with your admin ID check
+    if not message.from_user.id == ADMINS:  # Replace with your admin ID check
         return await message.reply("You do not have permission to set the download URL.")
 
     # Get the new URL from the message
     new_url = message.text.split(maxsplit=1)
     if len(new_url) < 2:
-        return await message.reply("Please provide a URL after the command. Example: /set_download_url <url>")
+        return await message.reply("Please provide a URL after the command. Example: /seturl <url>")
 
     new_url = new_url[1]  # The URL is the second part of the message
 
-    # Save the new URL in the settings (you may want to save it to a database or a file)
-    settings = await get_settings(message.chat.id)
-    settings['download_url'] = new_url  # Update the settings with the new URL
-
-    # Save the settings back (implement this function according to your storage method)
-    await save_group_settings(message.chat.id, settings)
+    # Save the new URL in the settings using the provided function
+    await save_group_settings(message.chat.id, 'download_url', new_url)
 
     await message.reply(f"The download URL has been set to: {new_url}")
+    
 @Client.on_message(filters.command('autofilter'))
 
 async def fil_mod(client, message): 
@@ -254,7 +273,7 @@ async def next_page(bot, query):
         )
         if settings['button'] and settings.get('download_url'):
             btn.append(
-                [InlineKeyboardButton("🤔 𝐇𝐨𝐰 𝐓𝐨 𝐃𝐨𝐰𝐧𝐥𝐨𝐚𝐝 ", url=f"https://t.me/Obrain_bot?start=Z2V0LTQ1Mzk3NDM2NTE0NzA3MjA")])
+                [InlineKeyboardButton("🤔 𝐇𝐨𝐰 𝐓𝐨 𝐃𝐨𝐰𝐧𝐥𝐨𝐚𝐝 ", url=settings['download_url'])])
         
         btn.append(
             [InlineKeyboardButton('🚪 𝐂𝐋𝐎𝐒𝐄', callback_data='close_data')])
@@ -264,7 +283,7 @@ async def next_page(bot, query):
              InlineKeyboardButton("NEXT ⏩", callback_data=f"next_{req}_{key}_{n_offset}")])
         if settings['button'] and settings.get('download_url'):
             btn.append(
-                [InlineKeyboardButton("🤔 𝐇𝐨𝐰 𝐓𝐨 𝐃𝐨𝐰𝐧𝐥𝐨𝐚𝐝 ", url=f"https://t.me/Obrain_bot?start=Z2V0LTQ1Mzk3NDM2NTE0NzA3MjA")])
+                [InlineKeyboardButton("🤔 𝐇𝐨𝐰 𝐓𝐨 𝐃𝐨𝐰𝐧𝐥𝐨𝐚𝐝 ", url=settings['download_url'])])
         btn.append([InlineKeyboardButton('🚪 𝐂𝐋𝐎𝐒𝐄', callback_data='close_data')])
     else:
         btn.append(
@@ -275,7 +294,7 @@ async def next_page(bot, query):
             ],
         )
         if settings['button'] and settings.get('download_url')::
-            btn.append([InlineKeyboardButton("🤔 𝐇𝐨𝐰 𝐓𝐨 𝐃𝐨𝐰𝐧𝐥𝐨𝐚𝐝 ", url=f"https://t.me/Obrain_bot?start=Z2V0LTQ1Mzk3NDM2NTE0NzA3MjA")])
+            btn.append([InlineKeyboardButton("🤔 𝐇𝐨𝐰 𝐓𝐨 𝐃𝐨𝐰𝐧𝐥𝐨𝐚𝐝 ", url=settings['download_url'])])
         btn.append([InlineKeyboardButton('🚪 𝐂𝐋𝐎𝐒𝐄', callback_data='close_data')])
     try:
         await query.edit_message_reply_markup(
@@ -866,7 +885,7 @@ async def auto_filter(client, msg, spoll=False):
              )
     if settings['button'] and settings.get('download_url'):
         btn.append([
-                InlineKeyboardButton("🤔 𝐇𝐨𝐰 𝐓𝐨 𝐃𝐨𝐰𝐧𝐥𝐨𝐚𝐝 ", url=f"https://t.me/Obrain_bot?start=Z2V0LTQ1Mzk3NDM2NTE0NzA3MjA"),
+                InlineKeyboardButton("🤔 𝐇𝐨𝐰 𝐓𝐨 𝐃𝐨𝐰𝐧𝐥𝐨𝐚𝐝 ", url=settings['download_url']),
             ])
     btn.append([InlineKeyboardButton('🚪 𝐂𝐋𝐎𝐒𝐄', callback_data='close_data')])     
     imdb = await get_poster(search, file=(files[0]).file_name) if settings["imdb"] else None
