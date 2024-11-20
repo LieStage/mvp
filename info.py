@@ -47,7 +47,7 @@ CUSTOM_FILE_CAPTION = environ.get("CUSTOM_FILE_CAPTION", "FILE NAME : <a href=ht
 
 "\nSize : <i>{file_size}</i>\n"
 
-"\n<b>[LIONSTAGE](https://t.me/lion_stage)</b>")
+"\n<b>[LIONSTAGE](https://t.me/redirect_to_lion_stage)</b>")
                                              
 BATCH_FILE_CAPTION = environ.get("BATCH_FILE_CAPTION", CUSTOM_FILE_CAPTION)
 IMDB_TEMPLATE = environ.get("IMDB_TEMPLATE", "<b>Query: {query}</b> \n‌IMDb Data:\n\n🏷 Title: <a href={url}>{title}</a>\n🎭 Genres: {genres}\n📆 Year: <a href={url}/releaseinfo>{year}</a>\n🌟 Rating: <a href={url}/ratings>{rating}</a> / 10")
