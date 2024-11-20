@@ -203,12 +203,15 @@ async def next_page(bot, query):
     else:
         btn = [
             [
-                InlineKeyboardButton(
-                    text=f"{file.file_name}", callback_data=f'files#{file.file_id}'
-                ),
-                InlineKeyboardButton(
-                    text=f"{get_size(file.file_size)}",
-                    url=await get_shortlink(f"https://telegram.me/{temp.U_NAME}?start=files_{file.file_id}")
+                # InlineKeyboardButton(
+                #     text=f"{file.file_name}", callback_data=f'files#{file.file_id}'
+                # ),
+                # InlineKeyboardButton(
+                #     text=f"{get_size(file.file_size)}",
+                #     url=f"https://telegram.me/{temp.U_NAME}?start=files_{file.file_id}"
+                # ),
+                 InlineKeyboardButton(
+                    text=f"[{get_size(file.file_size)}] {file.file_name}", url=f"https://telegram.me/{temp.U_NAME}?start=files_{file.file_id}"
                 ),
             ]
             for file in files
@@ -226,16 +229,19 @@ async def next_page(bot, query):
              InlineKeyboardButton(f"📃 Pages {math.ceil(int(offset) / 10) + 1} / {math.ceil(total / 10)}",
                                   callback_data="pages")]
         )
-        btn.append(
-            [InlineKeyboardButton("🤔 𝐇𝐨𝐰 𝐓𝐨 𝐃𝐨𝐰𝐧𝐥𝐨𝐚𝐝 ", url=f"https://t.me/Obrain_bot?start=Z2V0LTQ1Mzk3NDM2NTE0NzA3MjA")])
+        if settings['button']:
+            btn.append(
+                [InlineKeyboardButton("🤔 𝐇𝐨𝐰 𝐓𝐨 𝐃𝐨𝐰𝐧𝐥𝐨𝐚𝐝 ", url=f"https://t.me/Obrain_bot?start=Z2V0LTQ1Mzk3NDM2NTE0NzA3MjA")])
+        
         btn.append(
             [InlineKeyboardButton('🚪 𝐂𝐋𝐎𝐒𝐄', callback_data='close_data')])
     elif off_set is None:
         btn.append(
             [InlineKeyboardButton(f"🗓 {math.ceil(int(offset) / 10) + 1} / {math.ceil(total / 10)}", callback_data="pages"),
              InlineKeyboardButton("NEXT ⏩", callback_data=f"next_{req}_{key}_{n_offset}")])
-        btn.append(
-            [InlineKeyboardButton("🤔 𝐇𝐨𝐰 𝐓𝐨 𝐃𝐨𝐰𝐧𝐥𝐨𝐚𝐝 ", url=f"https://t.me/Obrain_bot?start=Z2V0LTQ1Mzk3NDM2NTE0NzA3MjA")])
+        if settings['button']:
+            btn.append(
+                [InlineKeyboardButton("🤔 𝐇𝐨𝐰 𝐓𝐨 𝐃𝐨𝐰𝐧𝐥𝐨𝐚𝐝 ", url=f"https://t.me/Obrain_bot?start=Z2V0LTQ1Mzk3NDM2NTE0NzA3MjA")])
         btn.append([InlineKeyboardButton('🚪 𝐂𝐋𝐎𝐒𝐄', callback_data='close_data')])
     else:
         btn.append(
@@ -245,7 +251,8 @@ async def next_page(bot, query):
                 InlineKeyboardButton("NEXT ⏩", callback_data=f"next_{req}_{key}_{n_offset}")
             ],
         )
-        btn.append([InlineKeyboardButton("🤔 𝐇𝐨𝐰 𝐓𝐨 𝐃𝐨𝐰𝐧𝐥𝐨𝐚𝐝 ", url=f"https://t.me/Obrain_bot?start=Z2V0LTQ1Mzk3NDM2NTE0NzA3MjA")])
+        if settings['button']:
+            btn.append([InlineKeyboardButton("🤔 𝐇𝐨𝐰 𝐓𝐨 𝐃𝐨𝐰𝐧𝐥𝐨𝐚𝐝 ", url=f"https://t.me/Obrain_bot?start=Z2V0LTQ1Mzk3NDM2NTE0NzA3MjA")])
         btn.append([InlineKeyboardButton('🚪 𝐂𝐋𝐎𝐒𝐄', callback_data='close_data')])
     try:
         await query.edit_message_reply_markup(
@@ -722,7 +729,7 @@ async def cb_handler(client: Client, query: CallbackQuery):
                 [
                     InlineKeyboardButton('Filter Button',
                                          callback_data=f'setgs#button#{settings["button"]}#{str(grp_id)}'),
-                    InlineKeyboardButton('Single' if settings["button"] else 'Double',
+                    InlineKeyboardButton('Shortner' if settings["button"] else 'No Shortner',
                                          callback_data=f'setgs#button#{settings["button"]}#{str(grp_id)}')
                 ],
                 [
@@ -789,16 +796,33 @@ async def auto_filter(client, msg, spoll=False):
             ]
             for file in files
         ]
+    # else:
+    #     btn = [
+    #         [
+    #             InlineKeyboardButton(
+    #                 text=f"{file.file_name}",
+    #                 url=await get_shortlink(f"https://telegram.me/{temp.U_NAME}?start=pre_{file.file_id}")
+    #             ),
+    #             InlineKeyboardButton(
+    #                 text=f"{get_size(file.file_size)}",
+    #                 url=await get_shortlink(f"https://telegram.me/{temp.U_NAME}?start=pre_{file.file_id}")
+    #             ),
+    #         ]
+    #         for file in files
+    #     ]
     else:
         btn = [
             [
-                InlineKeyboardButton(
-                    text=f"{file.file_name}",
-                    url=await get_shortlink(f"https://telegram.me/{temp.U_NAME}?start=pre_{file.file_id}")
-                ),
-                InlineKeyboardButton(
-                    text=f"{get_size(file.file_size)}",
-                    url=await get_shortlink(f"https://telegram.me/{temp.U_NAME}?start=pre_{file.file_id}")
+                # InlineKeyboardButton(
+                #     text=f"{file.file_name}",
+                #     url=await get_shortlink(f"https://telegram.me/{temp.U_NAME}?start=pre_{file.file_id}")
+                # ),
+                # InlineKeyboardButton(
+                #     text=f"{get_size(file.file_size)}",
+                #     url=await get_shortlink(f"https://telegram.me/{temp.U_NAME}?start=pre_{file.file_id}")
+                # ),
+                  InlineKeyboardButton(
+                    text=f"[{get_size(file.file_size)}] {file.file_name}", url=f"https://telegram.me/{temp.U_NAME}?start=pre_{file.file_id}"
                 ),
             ]
             for file in files
@@ -817,8 +841,8 @@ async def auto_filter(client, msg, spoll=False):
         btn.append(
             [InlineKeyboardButton(text="🗓 1/1", callback_data="pages")]
              )
-
-    btn.append([
+    if settings['button']:
+        btn.append([
                 InlineKeyboardButton("🤔 𝐇𝐨𝐰 𝐓𝐨 𝐃𝐨𝐰𝐧𝐥𝐨𝐚𝐝 ", url=f"https://t.me/Obrain_bot?start=Z2V0LTQ1Mzk3NDM2NTE0NzA3MjA"),
             ])
     btn.append([InlineKeyboardButton('🚪 𝐂𝐋𝐎𝐒𝐄', callback_data='close_data')])     
