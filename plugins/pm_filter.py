@@ -294,7 +294,7 @@ async def next_page(bot, query):
             ],
         )
         btn.append([InlineKeyboardButton('🚪 𝐂𝐋𝐎𝐒𝐄', callback_data='close_data')])
-        if settings['button'] and settings.get('download_url')::
+        if settings['button'] and settings.get('download_url'):
             btn.append([InlineKeyboardButton("🤔 𝐇𝐨𝐰 𝐓𝐨 𝐃𝐨𝐰𝐧𝐥𝐨𝐚𝐝 ", url=settings['download_url'])])
     try:
         await query.edit_message_reply_markup(
