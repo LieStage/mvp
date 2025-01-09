@@ -263,6 +263,12 @@ async def advantage_spoll_choker(bot, query):
         return await query.answer("okDa", show_alert=True)
     if movie_ == "close_spellcheck":
         return await query.message.delete()
+    # Check if reply_to_message is None
+
+    if query.message.reply_to_message is None:
+
+        return await query.answer("This button must be used in response to a message.", show_alert=True)
+
     movies = SPELL_CHECK.get(query.message.reply_to_message.id)
     if not movies:
         return await query.answer("You are clicking on an old button which is expired.", show_alert=True)
