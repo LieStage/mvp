@@ -8,5 +8,5 @@ requests
 bs4
 imdbpy
 shortzy
-git+https://github.com/cinemagoer/cinemagoer
+
 aiohttp
